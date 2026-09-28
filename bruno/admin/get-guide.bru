@@ -1,0 +1,15 @@
+meta {
+  name: Get guide
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{baseUrl}}/admin/apps/{{appId}}/guide
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{adminToken}}
+}

@@ -1,0 +1,15 @@
+meta {
+  name: Publish guide
+  type: http
+  seq: 12
+}
+
+post {
+  url: {{baseUrl}}/admin/apps/{{appId}}/guide/publish
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{adminToken}}
+}

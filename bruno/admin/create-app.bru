@@ -1,0 +1,35 @@
+meta {
+  name: Create app
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/admin/apps
+  body: json
+  auth: bearer
+}
+
+headers {
+  content-type: application/json
+}
+
+auth:bearer {
+  token: {{adminToken}}
+}
+
+body:json {
+  {
+    "name": "SpO2",
+    "package_name": "com.otofarma.spo2",
+    "version": "1.0.0",
+    "install_method": "file"
+  }
+}
+
+script:post-response {
+  const data = res.getBody();
+  if (data && data.id) {
+    bru.setVar("appId", data.id);
+  }
+}

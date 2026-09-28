@@ -1,0 +1,26 @@
+meta {
+  name: Update app
+  type: http
+  seq: 7
+}
+
+patch {
+  url: {{baseUrl}}/admin/apps/{{appId}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  content-type: application/json
+}
+
+auth:bearer {
+  token: {{adminToken}}
+}
+
+body:json {
+  {
+    "version": "1.1.0",
+    "install_method": "file"
+  }
+}

@@ -1,0 +1,35 @@
+meta {
+  name: Upload media
+  type: http
+  seq: 11
+}
+
+post {
+  url: {{baseUrl}}/admin/apps/{{appId}}/media
+  body: multipartForm
+  auth: bearer
+}
+
+params:query {
+  kind: image
+}
+
+auth:bearer {
+  token: {{adminToken}}
+}
+
+body:multipart-form {
+  file: @file(sample.png)
+}
+
+script:post-response {
+  const data = res.getBody();
+  if (data && data.id) {
+    bru.setVar("mediaId", data.id);
+  }
+}
+
+docs {
+  Choose an image or video before sending.
+  Change the kind query to video when uploading a video.
+}

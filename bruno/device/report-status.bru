@@ -1,0 +1,31 @@
+meta {
+  name: Report install status
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/device/status
+  body: json
+  auth: bearer
+}
+
+headers {
+  content-type: application/json
+}
+
+auth:bearer {
+  token: {{deviceToken}}
+}
+
+body:json {
+  {
+    "items": [
+      {
+        "app_id": "{{appId}}",
+        "installed": true,
+        "version": "1.0.0"
+      }
+    ]
+  }
+}

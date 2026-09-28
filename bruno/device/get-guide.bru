@@ -1,0 +1,15 @@
+meta {
+  name: Get published guide
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/apps/{{appId}}/guide
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{deviceToken}}
+}

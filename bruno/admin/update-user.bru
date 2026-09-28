@@ -1,0 +1,27 @@
+meta {
+  name: Update user
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{baseUrl}}/admin/users/{{userId}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  content-type: application/json
+}
+
+auth:bearer {
+  token: {{adminToken}}
+}
+
+body:json {
+  {
+    "name": "Giulia Bianchi",
+    "role": "Pharmacy",
+    "app_ids": ["{{appId}}"]
+  }
+}

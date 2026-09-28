@@ -1,0 +1,15 @@
+meta {
+  name: List apps
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/admin/apps
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{adminToken}}
+}

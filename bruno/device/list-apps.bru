@@ -1,0 +1,15 @@
+meta {
+  name: List my apps
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/apps
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{deviceToken}}
+}

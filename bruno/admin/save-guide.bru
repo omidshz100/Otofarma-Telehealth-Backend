@@ -1,0 +1,44 @@
+meta {
+  name: Save guide
+  type: http
+  seq: 10
+}
+
+put {
+  url: {{baseUrl}}/admin/apps/{{appId}}/guide
+  body: json
+  auth: bearer
+}
+
+headers {
+  content-type: application/json
+}
+
+auth:bearer {
+  token: {{adminToken}}
+}
+
+body:json {
+  {
+    "setup": [
+      {
+        "title": "Connect the cable",
+        "body": "Attach the adapter before turning the device on",
+        "image_ids": ["{{mediaId}}"]
+      }
+    ],
+    "usage": [
+      {
+        "title": "Take a reading",
+        "body": "Press start"
+      }
+    ],
+    "problems": [
+      {
+        "title": "No signal",
+        "body": "The cable is loose",
+        "solution": "Reconnect the cable"
+      }
+    ]
+  }
+}

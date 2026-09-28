@@ -1,0 +1,15 @@
+meta {
+  name: Get media
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/apps/{{appId}}/media/{{mediaId}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{deviceToken}}
+}

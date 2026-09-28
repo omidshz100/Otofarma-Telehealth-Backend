@@ -1,0 +1,24 @@
+meta {
+  name: Upload APK
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{baseUrl}}/admin/apps/{{appId}}/file
+  body: multipartForm
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{adminToken}}
+}
+
+body:multipart-form {
+  file: @file(sample.apk)
+}
+
+docs {
+  Choose an .apk file in the form field before sending.
+  The app install method must be file.
+}
