@@ -13,19 +13,45 @@ The API does not create Gmail mailboxes. An administrator creates each mailbox o
 
 ## Run
 
+Open a terminal in this backend folder. The folder must contain `app/main.py` and `requirements.txt`.
+
+First time only:
+
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 cp .env.example .env
+```
+
+Every time you start the API:
+
+```bash
+source .venv/bin/activate
 uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
-`--host 0.0.0.0` lets a phone or tablet on the same network reach the API. Interactive docs: http://127.0.0.1:8000/docs
+Leave that terminal open. Stop the server with Ctrl+C.
 
-The dashboard proxies `http://localhost:5173/api` to `http://127.0.0.1:8000`. The Android app uses the computer's LAN address, set as `BASE_URL` in that project.
+When it is running, open http://127.0.0.1:8000/docs on this computer. A page titled Otofarma API means the server is up.
+
+`--host 0.0.0.0` accepts connections from a phone or tablet on the same network. `--reload` restarts the server when Python files change.
+
+The dashboard calls this API through http://127.0.0.1:8000. The Android app calls the computer's LAN address, which is `BASE_URL` in the Android project. On macOS, print that address with:
+
+```bash
+ipconfig getifaddr en0
+```
+
+The phone address is `http://<that-ip>:8000`. If the IP changes, update `BASE_URL` and run the Android app again.
 
 The first start creates the administrator from `.env` when that email is not already in the database. Default login: `admin@example.com` / `admin12345`.
+
+Check the tests while the virtualenv is active:
+
+```bash
+pytest
+```
 
 ## Configuration
 
